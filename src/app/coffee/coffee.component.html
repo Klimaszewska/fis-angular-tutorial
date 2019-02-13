@@ -18,19 +18,12 @@
     description:&nbsp;
       <span>{{selectedCoffee.description}}</span>
   </div>
-
-  <!-- two-way binding -->
-  <div>
-    <h3>Edit your lovely coffee</h3>
-    <div>name:<br><input [(ngModel)]="selectedCoffee.name"></div>
-    <div>description:<br><textarea [(ngModel)]="selectedCoffee.description" rows="3" cols="30"></textarea></div>
-
-  </div>
 </div>
 
+<app-coffee-details [selectedCoffee]="selectedCoffee"></app-coffee-details>
 
 <!-- add new lovely coffee -->
-<div  >
+<div>
   <h3>New coffee</h3>
   <div>name:<br><input #name></div>
   <div>description:<br><textarea #description rows="3" cols="30"></textarea></div>
@@ -38,12 +31,7 @@
 </div>
 
 
-  <!-- one-way binding
-    <div>
-    <input value="{{selectedCoffee.name}}" >
-    <textarea [(ngModel)]="selectedCoffee.description" rows="3" ></textarea>
-    <button (click)="onSubmit()" ></button>
-  </div> -->
+
 
 
 

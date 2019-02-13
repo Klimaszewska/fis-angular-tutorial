@@ -26,6 +26,7 @@ export class CoffeeComponent implements OnInit {
   }
 
   onSubmit(name: string, description: string): void {
-    this.coffeeService.addCoffee(name, description);
+    const coffee = this.coffeeService.addCoffee(name, description);
+    this.fisCoffeeTypes.push(coffee);
   }
 }

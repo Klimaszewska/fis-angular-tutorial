@@ -1,0 +1,15 @@
+<!-- two-way binding -->
+<div *ngIf="selectedCoffee">
+  <h3>Edit your lovely coffee</h3>
+  <div>name:<br><input [(ngModel)]="selectedCoffee.name"></div>
+  <div>description:<br><textarea [(ngModel)]="selectedCoffee.description" rows="3" cols="30"></textarea></div>
+
+</div>
+
+
+<!-- one-way binding
+  <div>
+  <input value="{{selectedCoffee.name}}" >
+  <textarea [(ngModel)]="selectedCoffee.description" rows="3" ></textarea>
+  <button (click)="onSubmit()" ></button>
+</div> -->

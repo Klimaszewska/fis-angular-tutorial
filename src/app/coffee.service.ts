@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {FisCoffee} from './fis-coffee';
 import {Observable, of} from 'rxjs';
 import {FISCOFFEE} from './fis-mock-repo';
@@ -6,25 +6,27 @@ import {FISCOFFEE} from './fis-mock-repo';
 @Injectable({
   providedIn: 'root'
 })
-export class CoffeeService {
+export class CoffeeService  {
 
-  fisCoffeeTypes: FisCoffee[];
+  fisCoffeeTypes;
 
-  constructor() { }
+  constructor() {
+    this.fisCoffeeTypes = FISCOFFEE;
+  }
 
   getCoffeeTypes(): Observable <FisCoffee[]> {
     return of(FISCOFFEE);
   }
 
-  addCoffee(name: string, description: string): void {
+  addCoffee(name: string, description: string): FisCoffee {
     const coffee = new FisCoffee();
     coffee.id = this.generateId();
     coffee.name = name;
     coffee.description = description;
-    this.fisCoffeeTypes.push(coffee);
+    return coffee;
   }
 
   generateId(): number {
-    return this.fisCoffeeTypes.length + 1;
+    return Math.floor(Math.random() * (1000 - 17 + 1)) + 17;
   }
 }
