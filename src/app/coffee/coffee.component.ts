@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FisCoffee} from '../fis-coffee';
 import {FISCOFFEE} from '../fis-mock-repo';
+import {CoffeeService} from '../coffee.service';
+
 
 @Component({
   selector: 'app-coffee',
@@ -13,10 +15,10 @@ export class CoffeeComponent implements OnInit {
 
   fisCoffeeTypes;
 
-  constructor() { }
+  constructor(private coffeeService: CoffeeService) { }
 
   ngOnInit() {
-    this.fisCoffeeTypes = FISCOFFEE;
+    this.coffeeService.getCoffeeTypes().subscribe(coffeeTypes => this.fisCoffeeTypes = coffeeTypes);
   }
 
   onSelect(coffee: FisCoffee): void {
@@ -24,14 +26,6 @@ export class CoffeeComponent implements OnInit {
   }
 
   onSubmit(name: string, description: string): void {
-    const coffee = new FisCoffee();
-    coffee.id = this.generateId();
-    coffee.name = name;
-    coffee.description = description;
-    this.fisCoffeeTypes.push(coffee);
-  }
-
-  generateId(): number {
-    return this.fisCoffeeTypes.length + 1;
+    this.coffeeService.addCoffee(name, description);
   }
 }
