@@ -9,13 +9,29 @@ import {FISCOFFEE} from '../fis-mock-repo';
 })
 export class CoffeeComponent implements OnInit {
 
-  coffee: FisCoffee;
+  selectedCoffee: FisCoffee;
 
-  fisCoffeeTypes = FISCOFFEE;
+  fisCoffeeTypes;
 
   constructor() { }
 
   ngOnInit() {
+    this.fisCoffeeTypes = FISCOFFEE;
   }
 
+  onSelect(coffee: FisCoffee): void {
+    this.selectedCoffee = coffee;
+  }
+
+  onSubmit(name: string, description: string): void {
+    const coffee = new FisCoffee();
+    coffee.id = this.generateId();
+    coffee.name = name;
+    coffee.description = description;
+    this.fisCoffeeTypes.push(coffee);
+  }
+
+  generateId(): number {
+    return this.fisCoffeeTypes.length + 1;
+  }
 }

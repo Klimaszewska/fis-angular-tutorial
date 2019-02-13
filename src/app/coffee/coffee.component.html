@@ -1,1 +1,49 @@
 <h1>Coffee!</h1>
+
+<div>
+  <ul class="coffee">
+    <li *ngFor="let coffee of fisCoffeeTypes" [class.selected]="coffee === selectedCoffee" (click)="onSelect(coffee)">
+      <span>{{coffee.name}}</span>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="selectedCoffee">
+  <h2>{{selectedCoffee.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{selectedCoffee.id}}</div>
+  <div>
+    name:&nbsp;
+      <span>{{selectedCoffee.name}}</span>
+    <br>
+    description:&nbsp;
+      <span>{{selectedCoffee.description}}</span>
+  </div>
+
+  <!-- two-way binding -->
+  <div>
+    <h3>Edit your lovely coffee</h3>
+    <div>name:<br><input [(ngModel)]="selectedCoffee.name"></div>
+    <div>description:<br><textarea [(ngModel)]="selectedCoffee.description" rows="3" cols="30"></textarea></div>
+
+  </div>
+</div>
+
+
+<!-- add new lovely coffee -->
+<div  >
+  <h3>New coffee</h3>
+  <div>name:<br><input #name></div>
+  <div>description:<br><textarea #description rows="3" cols="30"></textarea></div>
+  <div><button (click)="onSubmit(name.value, description.value)" >Add coffee</button></div>
+</div>
+
+
+  <!-- one-way binding
+    <div>
+    <input value="{{selectedCoffee.name}}" >
+    <textarea [(ngModel)]="selectedCoffee.description" rows="3" ></textarea>
+    <button (click)="onSubmit()" ></button>
+  </div> -->
+
+
+
