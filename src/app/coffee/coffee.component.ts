@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FisCoffee} from '../fis-coffee';
+import {FISCOFFEE} from '../fis-mock-repo';
 
 @Component({
   selector: 'app-coffee',
@@ -9,6 +10,8 @@ import {FisCoffee} from '../fis-coffee';
 export class CoffeeComponent implements OnInit {
 
   coffee: FisCoffee;
+
+  fisCoffeeTypes = FISCOFFEE;
 
   constructor() { }
 
